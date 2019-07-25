@@ -4,6 +4,6 @@ Pure Swift collection based on a classical data structure, Singly Linked List. T
 **W.I.P.**
 
 Still need to do several things:
-• Supplement tests of Sequence implementation
-• Implement Copy-on-Write for the list itself
-• Convert to a Swift Package
+* Supplement tests of Sequence implementation
+* Implement Copy-on-Write for the list itself
+* Convert to a Swift Package
