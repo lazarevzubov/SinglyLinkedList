@@ -297,8 +297,16 @@ extension SinglyLinkedList: Collection {
      - parameter slice: A corresponding `SubSequence` instance.
      */
     public init(_ slice: SubSequence) {
-        slice[slice.endIndex - 1].nextNode = nil
-        self = SinglyLinkedList(firstNode: slice[slice.startIndex])
+        let startIndex = slice.startIndex
+        let endIndex = slice.endIndex
+
+        guard startIndex != endIndex else {
+            self = SinglyLinkedList()
+            return
+        }
+
+        slice[endIndex - 1].nextNode = nil
+        self = SinglyLinkedList(firstNode: slice[startIndex])
     }
 
     // MARK: - Methods

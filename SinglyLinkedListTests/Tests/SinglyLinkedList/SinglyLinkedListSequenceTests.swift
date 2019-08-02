@@ -512,13 +512,21 @@ final class SinglyLinkedListSequenceTests: XCTestCase {
     func testShuffledUsing() {
         struct Generator: RandomNumberGenerator {
 
+            // MARK: - Properties
+
             var current: UInt64 = 0
+
+            // MARK: - Methods
+
+            // MARK: RandomNumberGenerator protocol methods
 
             func next() -> UInt64 {
                 return current + 1
             }
 
         }
+
+        // MARK: -
 
         let thirdNode = Node(payload: 3)
         let secondNode = Node(payload: 2, nextNode: thirdNode)

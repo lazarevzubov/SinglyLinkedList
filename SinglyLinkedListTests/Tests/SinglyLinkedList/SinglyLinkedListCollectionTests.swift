@@ -162,7 +162,138 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testIndexOffsetByLimitedBy() {
-        // TODO: Add implementation.
+        let list = SinglyLinkedList<Int>()
+
+        let initialIndex = 1
+        let offset = 5
+        let expectedIndex = initialIndex + offset
+        XCTAssertEqual(list.index(initialIndex, offsetBy: offset, limitedBy: expectedIndex + 1),
+                       expectedIndex,
+                       "Result of offset index doesn't equal the initial index plus offset.")
+        XCTAssertEqual(list.index(initialIndex, offsetBy: offset, limitedBy: expectedIndex),
+                       expectedIndex,
+                       "Result of offset index doesn't equal the initial index plus offset.")
+        XCTAssertNil(list.index(initialIndex, offsetBy: offset, limitedBy: expectedIndex - 1), "Result of offset index isn't nil if offset goes beyond a limit.")
+    }
+
+    func testPrefixThrough() {
+        let fourthPayload = 4
+        let fourthNode = Node(payload: fourthPayload)
+        let thirdPayload = 3
+        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let secondPayload = 2
+        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let firstPayload = 1
+        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let list = SinglyLinkedList(firstNode: firstNode)
+
+        let index = 2
+        let prefix = list.prefix(through: index)
+        let result = SinglyLinkedList(prefix)
+
+        let expectedThirdNode = Node(payload: thirdPayload)
+        let expectedSecondNode = Node(payload: secondPayload, nextNode: expectedThirdNode)
+        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
+
+        XCTAssertEqual(result,
+                       expectedList,
+                       #"The resulting list of the "prefix-through" call is not equal the list with initial list's start index and the passed value as the end index."#)
+    }
+
+    func testPrefixUpTo() {
+        let fourthPayload = 4
+        let fourthNode = Node(payload: fourthPayload)
+        let thirdPayload = 3
+        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let secondPayload = 2
+        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let firstPayload = 1
+        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let list = SinglyLinkedList(firstNode: firstNode)
+
+        let index = 2
+        let prefix = list.prefix(upTo: index)
+        let result = SinglyLinkedList(prefix)
+
+        let expectedSecondNode = Node(payload: secondPayload)
+        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
+
+        XCTAssertEqual(result,
+                       expectedList,
+                       #"The resulting list of the "prefix-up-to" call is not equal the list with initial list's start index and the passed value minus one as the end index."#)
+    }
+
+    func testPrefixWhile() {
+        let fourthPayload = 4
+        let fourthNode = Node(payload: fourthPayload)
+        let thirdPayload = 3
+        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let secondPayload = 2
+        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let firstPayload = 1
+        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let list = SinglyLinkedList(firstNode: firstNode)
+        
+        let prefix = list.prefix { $0.payload < thirdPayload }
+        let result = SinglyLinkedList(prefix)
+        
+        let expectedSecondNode = Node(payload: secondPayload)
+        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
+        
+        XCTAssertEqual(result,
+                       expectedList,
+                       #"The resulting list of the "prefix-up-to" call is not equal the list with initial list's start index and the index of the last node satisfying the condition as the end index."#)
+    }
+
+    func testSuffixFrom() {
+        let fourthNode = Node(payload: 4)
+        let thirdNode = Node(payload: 3, nextNode: fourthNode)
+        let secondNode = Node(payload: 2, nextNode: thirdNode)
+        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let list = SinglyLinkedList(firstNode: firstNode)
+
+        let index = 2
+        let suffix = list.suffix(from: index)
+        let result = SinglyLinkedList(suffix)
+
+        let expectedResult = SinglyLinkedList(firstNode: list[index])
+
+        XCTAssertEqual(result,
+                       expectedResult,
+                       #"The resulting list of the "suffix-from" call doesn't equal the list with the initial list's node of passed index as a start and the initial list's end index as an end index."#)
+    }
+
+    func testRandomElement() {
+        struct Generator: RandomNumberGenerator {
+
+            // MARK: - Properties
+
+            let randomIndex = 2
+
+            // MARK: - Methods
+
+            // MARK: RandomNumberGenerator protocol methods
+
+            func next() -> UInt64 {
+                return UInt64(randomIndex)
+            }
+
+        }
+
+        // MARK: -
+
+        let thirdNode = Node(payload: 3)
+        let secondNode = Node(payload: 2, nextNode: thirdNode)
+        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let list = SinglyLinkedList(firstNode: firstNode)
+
+        var generator = Generator()
+        XCTAssertEqual(list.randomElement(using: &generator),
+                       list[generator.randomIndex],
+                       "The result of random element picking doesn't equalt the node with the index that equals random number generator output.")
     }
 
 }
