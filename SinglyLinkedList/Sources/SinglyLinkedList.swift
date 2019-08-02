@@ -289,6 +289,17 @@ extension SinglyLinkedList: Collection {
 
         return lastIndex + 1
     }
+    
+    // MARK: - Initialization
+
+    /**
+     Creates a new instance from a `SubSequence` instance.
+     - parameter slice: A corresponding `SubSequence` instance.
+     */
+    public init(_ slice: SubSequence) {
+        slice[slice.endIndex - 1].nextNode = nil
+        self = SinglyLinkedList(firstNode: slice[slice.startIndex])
+    }
 
     // MARK: - Methods
 
