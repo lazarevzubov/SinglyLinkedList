@@ -4,6 +4,5 @@ Pure Swift collection based on a classical data structure, Singly Linked List. T
 
 **W.I.P.**
 
-Still need to do a couple things:
-* Implement Copy-on-Write for the list itself
+TODO:
 * Convert to a Swift Package

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1FF92A22F46B6D00D77AC3 /* COWBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1FF92922F46B6D00D77AC3 /* COWBox.swift */; };
 		7D7F7BFB22F3567A00326084 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7D7F7BFA22F3567A00326084 /* README.md */; };
 		7D926E9422DF4B6800805B36 /* XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D926E9322DF4B6800805B36 /* XCTest.swift */; };
 		7D9307BE22E0D89B00C1391F /* NodeEquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9307BD22E0D89B00C1391F /* NodeEquatableTests.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D1FF92922F46B6D00D77AC3 /* COWBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COWBox.swift; sourceTree = "<group>"; };
 		7D7F7BFA22F3567A00326084 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7D926E9322DF4B6800805B36 /* XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.swift; sourceTree = "<group>"; };
 		7D9307BD22E0D89B00C1391F /* NodeEquatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEquatableTests.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1FF92822F46B3000D77AC3 /* COW */ = {
+			isa = PBXGroup;
+			children = (
+				7D1FF92922F46B6D00D77AC3 /* COWBox.swift */,
+			);
+			path = COW;
+			sourceTree = "<group>";
+		};
 		7D5611E822D5DD80004DCED5 /* Node */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		DDD1668022AF83F100970A86 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7D1FF92822F46B3000D77AC3 /* COW */,
 				DDD1667422AF7BD600970A86 /* Node.swift */,
 				DDD1667222AF7BBD00970A86 /* SinglyLinkedList.swift */,
 			);
@@ -283,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1FF92A22F46B6D00D77AC3 /* COWBox.swift in Sources */,
 				DDD1667322AF7BBD00970A86 /* SinglyLinkedList.swift in Sources */,
 				DDD1667522AF7BD600970A86 /* Node.swift in Sources */,
 			);
