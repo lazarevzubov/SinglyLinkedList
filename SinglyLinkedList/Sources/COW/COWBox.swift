@@ -45,8 +45,6 @@ private final class Reference<T> {
 
     // MARK: - Properties
 
-    // MARK: Private properties
-
     var value: T?
 
     // MARK: - Initialization
