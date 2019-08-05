@@ -14,7 +14,7 @@
  Provides `Equatable` and `Comparable` protocol conformity for payload types which conform to `Equatable` and `Comparable` respectively.
  It is based on payload equality and comparability respectively and doesn't take in account the next node.
  */
-public final class SinglyLinkedListNode<T>/*: NSCopying*/ {
+public final class SinglyLinkedListNode<T>: NSCopying {
 
     // MARK: - Properties
 
