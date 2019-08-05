@@ -40,9 +40,9 @@ public final class SinglyLinkedListNode<T>/*: NSCopying*/ {
 
     // MARK: NSCopying protocol methods
 
-//    public func copy(with zone: NSZone? = nil) -> Any {
-//        return Node(payload: payload, nextNode: nextNode?.copy() as? Node<T>)
-//    }
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return SinglyLinkedListNode(payload: payload, nextNode: nextNode?.copy() as? SinglyLinkedListNode<T>)
+    }
 
 }
 
