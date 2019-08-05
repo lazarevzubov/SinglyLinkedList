@@ -19,26 +19,26 @@ final class SinglyLinkedListEquatableTests: XCTestCase {
         XCTAssertEqual(list01, list02, "Two empty lists aren't equal.")
 
         let payload01 = 1
-        let node011 = Node(payload: payload01)
+        let node011 = SinglyLinkedListNode(payload: payload01)
         list01.insertAtEnd(node011)
         XCTAssertNotEqual(list01, list02, "A non-empty list equals an empty one.")
 
-        let node021 = Node(payload: payload01)
+        let node021 = SinglyLinkedListNode(payload: payload01)
         list02.insertAtEnd(node021)
         XCTAssertEqual(list01, list02, "Two lists with one node each which are equal are unequal.")
 
         let payload02 = 2
-        let node012 = Node(payload: payload02)
+        let node012 = SinglyLinkedListNode(payload: payload02)
         list01.insertAtEnd(node012)
         XCTAssertNotEqual(list01, list02, "Two lists with different nodes count are equal.")
 
         let payload03 = 3
-        let node022 = Node(payload: payload03)
+        let node022 = SinglyLinkedListNode(payload: payload03)
         list02.insertAtEnd(node022)
         XCTAssertNotEqual(list01, list02, "Two lists with the same nodes count and nodes which aren't equal are equal.")
 
         let payload04 = 4
-        let node023 = Node(payload: payload04)
+        let node023 = SinglyLinkedListNode(payload: payload04)
         list02.insertAtEnd(node023)
         XCTAssertNotEqual(list01, list02, "Two lists with different nodes count and nodes which aren't equal are equal.")
     }
@@ -46,11 +46,11 @@ final class SinglyLinkedListEquatableTests: XCTestCase {
     func testOrder() {
         let payload11 = "1"
         let payload12 = "2"
-        let node112 = Node(payload: payload12)
-        let node111 = Node(payload: payload11, nextNode: node112)
+        let node112 = SinglyLinkedListNode(payload: payload12)
+        let node111 = SinglyLinkedListNode(payload: payload11, nextNode: node112)
         let list11 = SinglyLinkedList(firstNode: node111)
-        let node122 = Node(payload: payload11)
-        let node121 = Node(payload: payload12, nextNode: node122)
+        let node122 = SinglyLinkedListNode(payload: payload11)
+        let node121 = SinglyLinkedListNode(payload: payload12, nextNode: node122)
         let list12 = SinglyLinkedList(firstNode: node121)
 
         XCTAssertNotEqual(list11, list12, "Two lists with equal nodes in different order are equal.")

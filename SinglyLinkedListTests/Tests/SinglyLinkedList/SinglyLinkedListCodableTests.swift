@@ -14,9 +14,9 @@ final class SinglyLinkedListCodableTests: XCTestCase {
     // MARK: - Methods
 
     func testCodable() {
-        let node3 = Node(payload: 3)
-        let node2 = Node(payload: 2, nextNode: node3)
-        let node1 = Node(payload: 1, nextNode: node2)
+        let node3 = SinglyLinkedListNode(payload: 3)
+        let node2 = SinglyLinkedListNode(payload: 2, nextNode: node3)
+        let node1 = SinglyLinkedListNode(payload: 1, nextNode: node2)
         let list = SinglyLinkedList(firstNode: node1)
 
         // TODO: Re-write after XCTest helpers are improved.

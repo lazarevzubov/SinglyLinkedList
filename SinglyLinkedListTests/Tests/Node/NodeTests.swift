@@ -14,25 +14,25 @@ final class NodeTests: XCTestCase {
     // MARK: - Methods
 
     func testType() {
-        XCTAssertTrue(type(of: Node(payload: 1)) == type(of: Node(payload: 2)))
-        XCTAssertTrue(type(of: Node(payload: 1)) != type(of: Node(payload: "2")))
+        XCTAssertTrue(type(of: SinglyLinkedListNode(payload: 1)) == type(of: SinglyLinkedListNode(payload: 2)))
+        XCTAssertTrue(type(of: SinglyLinkedListNode(payload: 1)) != type(of: SinglyLinkedListNode(payload: "2")))
     }
 
     func testPayload() {
         let intPayload = 0
-        let intNode = Node(payload: intPayload)
+        let intNode = SinglyLinkedListNode(payload: intPayload)
         XCTAssertEqual(intNode.payload, intPayload, "An unexpected Int payload value.")
 
         let stringPayload = "Payload"
-        let stringNode = Node(payload: stringPayload)
+        let stringNode = SinglyLinkedListNode(payload: stringPayload)
         XCTAssertEqual(stringNode.payload, stringPayload, "An unexpected String payload value.")
     }
 
     func testNextNode() {
-        let nodeWithoutNext = Node(payload: 0)
+        let nodeWithoutNext = SinglyLinkedListNode(payload: 0)
         XCTAssertNil(nodeWithoutNext.nextNode, "A next node reference unexpectedly exists.")
 
-        let nodeWithNext = Node(payload: 1, nextNode: nodeWithoutNext)
+        let nodeWithNext = SinglyLinkedListNode(payload: 1, nextNode: nodeWithoutNext)
         XCTAssertTrue(nodeWithNext.nextNode === nodeWithoutNext, "A next node reference has an unexpected value.")
 
         nodeWithNext.nextNode = nil

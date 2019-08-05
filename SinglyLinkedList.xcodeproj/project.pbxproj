@@ -23,7 +23,7 @@
 		DDD1666222AF7B9B00970A86 /* SinglyLinkedList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD1665822AF7B9B00970A86 /* SinglyLinkedList.framework */; };
 		DDD1666922AF7B9B00970A86 /* SinglyLinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = DDD1665B22AF7B9B00970A86 /* SinglyLinkedList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDD1667322AF7BBD00970A86 /* SinglyLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1667222AF7BBD00970A86 /* SinglyLinkedList.swift */; };
-		DDD1667522AF7BD600970A86 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1667422AF7BD600970A86 /* Node.swift */; };
+		DDD1667522AF7BD600970A86 /* SinglyLinkedListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1667422AF7BD600970A86 /* SinglyLinkedListNode.swift */; };
 		DDD1667922AF7E2B00970A86 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1667822AF7E2B00970A86 /* NodeTests.swift */; };
 		DDD1667B22AF824A00970A86 /* SinglyLinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1667A22AF824A00970A86 /* SinglyLinkedListTests.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +58,7 @@
 		DDD1666122AF7B9B00970A86 /* SinglyLinkedListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SinglyLinkedListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD1666822AF7B9B00970A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDD1667222AF7BBD00970A86 /* SinglyLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglyLinkedList.swift; sourceTree = "<group>"; };
-		DDD1667422AF7BD600970A86 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		DDD1667422AF7BD600970A86 /* SinglyLinkedListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglyLinkedListNode.swift; sourceTree = "<group>"; };
 		DDD1667822AF7E2B00970A86 /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		DDD1667A22AF824A00970A86 /* SinglyLinkedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglyLinkedListTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,8 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				7D1FF92822F46B3000D77AC3 /* COW */,
-				DDD1667422AF7BD600970A86 /* Node.swift */,
 				DDD1667222AF7BBD00970A86 /* SinglyLinkedList.swift */,
+				DDD1667422AF7BD600970A86 /* SinglyLinkedListNode.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 			files = (
 				7D1FF92A22F46B6D00D77AC3 /* COWBox.swift in Sources */,
 				DDD1667322AF7BBD00970A86 /* SinglyLinkedList.swift in Sources */,
-				DDD1667522AF7BD600970A86 /* Node.swift in Sources */,
+				DDD1667522AF7BD600970A86 /* SinglyLinkedListNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

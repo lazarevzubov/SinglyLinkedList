@@ -24,7 +24,7 @@ public struct SinglyLinkedList<T> {
      The first node of the list.
      - warning: Setting new value explicitly not inserts the node at the beginning, but replaces the entire sequence.
      */
-    public var firstNode: Node<T>? {
+    public var firstNode: SinglyLinkedListNode<T>? {
         get {
             return boxedFirstNode.value
         }
@@ -35,7 +35,7 @@ public struct SinglyLinkedList<T> {
 
     // MARK: Private properties
 
-    private var boxedFirstNode: COWBox<Node<T>>
+    private var boxedFirstNode: COWBox<SinglyLinkedListNode<T>>
 
     // MARK: - Initialization
 
@@ -47,7 +47,7 @@ public struct SinglyLinkedList<T> {
 
      - parameter firstNode: The first node of the list. Nil value corresponds to an empty list.
      */
-    public init(firstNode: Node<T>? = nil) {
+    public init(firstNode: SinglyLinkedListNode<T>? = nil) {
         boxedFirstNode = COWBox(firstNode)
     }
 
@@ -60,7 +60,7 @@ public struct SinglyLinkedList<T> {
 
      - returns: The last node of the list or `nil` if the list is empty.
      */
-    public func lastNode() -> Node<T>? {
+    public func lastNode() -> SinglyLinkedListNode<T>? {
         guard let firstNode = firstNode else { return nil }
 
         var lastNode = firstNode
@@ -82,7 +82,7 @@ public struct SinglyLinkedList<T> {
 
      - parameter newNode: A new node to be inserted at the beginnging of the list.
      */
-    public mutating func insertAtBeginning(_ newNode: Node<T>) {
+    public mutating func insertAtBeginning(_ newNode: SinglyLinkedListNode<T>) {
         newNode.nextNode = firstNode
         firstNode = newNode
     }
@@ -98,7 +98,7 @@ public struct SinglyLinkedList<T> {
         - newNode: A node to be inserted.
         - node: A node after which the new node must be inserted.
      */
-    public func insert(_ newNode: Node<T>, after node: Node<T>) {
+    public func insert(_ newNode: SinglyLinkedListNode<T>, after node: SinglyLinkedListNode<T>) {
         newNode.nextNode = node.nextNode
         node.nextNode = newNode
     }
@@ -112,7 +112,7 @@ public struct SinglyLinkedList<T> {
 
      - parameter newNode: A new node to be inserted at the end of the list.
      */
-    public mutating func insertAtEnd(_ newNode: Node<T>) {
+    public mutating func insertAtEnd(_ newNode: SinglyLinkedListNode<T>) {
         if let lastNode = lastNode() {
             insert(newNode, after: lastNode)
         } else {
@@ -138,7 +138,7 @@ public struct SinglyLinkedList<T> {
 
      Complexity – O(1).
      */
-    public func remove(after node: Node<T>) {
+    public func remove(after node: SinglyLinkedListNode<T>) {
         node.nextNode = node.nextNode?.nextNode
     }
 
@@ -199,7 +199,7 @@ extension SinglyLinkedList: Codable where T: Codable { }
 
 extension SinglyLinkedList: Sequence {
 
-    public typealias Element = Node<T>
+    public typealias Element = SinglyLinkedListNode<T>
     public typealias Iterator = SinglyLinkedListIterator<T>
 
     // MARK: - Initialization
@@ -240,7 +240,7 @@ extension SinglyLinkedList: Sequence {
     }
 
     public __consuming func prefix(_ maxLength: Int) -> PrefixSequence<SinglyLinkedList<T>> {
-        let result = SinglyLinkedList(firstNode: firstNode?.copy() as? Node<T>)
+        let result = SinglyLinkedList(firstNode: firstNode?.copy() as? SinglyLinkedListNode<T>)
         for (index, node) in result.enumerated() {
             if index + 1 == maxLength {
                 node.nextNode = nil
@@ -261,7 +261,7 @@ extension SinglyLinkedList: Collection {
     
     public typealias Index = Int
 
-    public subscript(position: Int) -> Node<T> {
+    public subscript(position: Int) -> SinglyLinkedListNode<T> {
         _read {
             var result: Element? = nil
             for (index, node) in enumerated() {
@@ -361,7 +361,7 @@ extension SinglyLinkedList: CustomStringConvertible where T: CustomStringConvert
 
 public struct SinglyLinkedListIterator<T>: IteratorProtocol {
 
-    public typealias Element = Node<T>
+    public typealias Element = SinglyLinkedListNode<T>
 
     // MARK: - Properties
 
@@ -371,7 +371,7 @@ public struct SinglyLinkedListIterator<T>: IteratorProtocol {
 
     // MARK: IteratorProtocol protocol methods
 
-    mutating public func next() -> Node<T>? {
+    mutating public func next() -> SinglyLinkedListNode<T>? {
         defer {
             list.removeFirst()
         }

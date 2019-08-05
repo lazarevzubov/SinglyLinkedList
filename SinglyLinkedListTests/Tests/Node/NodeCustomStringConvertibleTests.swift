@@ -15,12 +15,12 @@ final class NodeCustomStringConvertibleTests: XCTestCase {
 
     func testDescription() {
         let intPayload0 = 0
-        let intNode0 = Node(payload: intPayload0)
+        let intNode0 = SinglyLinkedListNode(payload: intPayload0)
         let intPointer0 = Unmanaged.passRetained(intNode0).toOpaque()
         XCTAssertEqual(intNode0.description, "The node \(intPointer0) has the payload \(intPayload0) and no next node.", "The node has an unexpected description value.")
 
         let intPayload1 = 1
-        let intNode1 = Node(payload: intPayload1)
+        let intNode1 = SinglyLinkedListNode(payload: intPayload1)
         intNode0.nextNode = intNode1
         let intPointer1 = Unmanaged.passRetained(intNode1).toOpaque()
         XCTAssertEqual(intNode0.description,
@@ -29,14 +29,14 @@ final class NodeCustomStringConvertibleTests: XCTestCase {
         XCTAssertEqual(intNode1.description, "The node \(intPointer1) has the payload \(intPayload1) and no next node.", "The node has an unexpected description value.")
 
         let stringPayload0 = "0"
-        let stringNode0 = Node(payload: stringPayload0)
+        let stringNode0 = SinglyLinkedListNode(payload: stringPayload0)
         let stringPointer0 = Unmanaged.passRetained(stringNode0).toOpaque()
         XCTAssertEqual(stringNode0.description,
                        "The node \(stringPointer0) has the payload \(stringPayload0) and no next node.",
                        "The node has an unexpected description value.")
 
         let stringPayload1 = "1"
-        let stringNode1 = Node(payload: stringPayload1)
+        let stringNode1 = SinglyLinkedListNode(payload: stringPayload1)
         stringNode0.nextNode = stringNode1
         let stringPointer1 = Unmanaged.passRetained(stringNode1).toOpaque()
         XCTAssertEqual(stringNode0.description,

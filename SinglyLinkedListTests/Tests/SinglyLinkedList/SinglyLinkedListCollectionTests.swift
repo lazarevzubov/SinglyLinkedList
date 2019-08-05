@@ -14,9 +14,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     // MARK: - Methods
 
     func testSubscript() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         
         XCTAssertEqual(list[0], firstNode)
@@ -27,9 +27,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testFormIndex() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         let startingValue = 0
@@ -41,9 +41,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testLimitedFormIndex() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         let startingValue = 0
@@ -58,9 +58,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testUnderestimatedCount() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         XCTAssertEqual(list.underestimatedCount, 3, "The list's underestimated count is different from the nodes count.")
 
@@ -69,9 +69,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testCount() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         XCTAssertEqual(list.count, 3, "The list's count is different from the actual nodes number.")
 
@@ -83,8 +83,8 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
         let emptyList = SinglyLinkedList<Int>()
         XCTAssertNil(emptyList.first, "The list initialized as empty unexpectedly has a first node.")
 
-        let secondNode = Node(payload: 2)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let secondNode = SinglyLinkedListNode(payload: 2)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         XCTAssertEqual(list.first, firstNode, "First node doesn't match the node which the list was initialized with.")
     }
@@ -93,8 +93,8 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
         let emptyList = SinglyLinkedList<Int>()
         XCTAssertTrue(emptyList.isEmpty, "Empty list is unexpectedly not empty.")
 
-        let secondNode = Node(payload: 2)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let secondNode = SinglyLinkedListNode(payload: 2)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         XCTAssertFalse(list.isEmpty, "A list with two nodes is unexpectedly not empty.")
     }
@@ -110,26 +110,26 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testFirstIndexOf() {
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         XCTAssertEqual(list.firstIndex(of: firstNode), 0, "Index of the first node is not 0.")
         XCTAssertEqual(list.firstIndex(of: secondNode), 1, "Index of the second node is not 1.")
         XCTAssertEqual(list.firstIndex(of: thirdNode), list.count - 1, "Index of the last node is not the list's count minus 1.")
 
-        let otherNode = Node(payload: 4)
+        let otherNode = SinglyLinkedListNode(payload: 4)
         XCTAssertNil(list.firstIndex(of: otherNode), "An index of node which isn't conteined in the list is not nil.")
     }
 
     func testFirstIndexWhere() {
         let thirdPayload = 3
-        let thirdNode = Node(payload: thirdPayload)
+        let thirdNode = SinglyLinkedListNode(payload: thirdPayload)
         let secondPayload = 2
-        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let secondNode = SinglyLinkedListNode(payload: secondPayload, nextNode: thirdNode)
         let firstPayload = 1
-        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let firstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         XCTAssertEqual(list.firstIndex { $0.payload == firstPayload }, 0, "Index of the node with a condition matching the first node is not 0.")
@@ -139,7 +139,7 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
                        "Index of the node with a condition matching the last node is not the list's count minus 1.")
 
         let otherPayload = 4
-        _ = Node(payload: otherPayload)
+        _ = SinglyLinkedListNode(payload: otherPayload)
         XCTAssertNil(list.firstIndex { $0.payload == otherPayload }, "An index of a node which conditions doesn't match the list is not nil.")
     }
 
@@ -178,22 +178,22 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
 
     func testPrefixThrough() {
         let fourthPayload = 4
-        let fourthNode = Node(payload: fourthPayload)
+        let fourthNode = SinglyLinkedListNode(payload: fourthPayload)
         let thirdPayload = 3
-        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let thirdNode = SinglyLinkedListNode(payload: thirdPayload, nextNode: fourthNode)
         let secondPayload = 2
-        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let secondNode = SinglyLinkedListNode(payload: secondPayload, nextNode: thirdNode)
         let firstPayload = 1
-        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let firstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         let index = 2
         let prefix = list.prefix(through: index)
         let result = SinglyLinkedList(prefix)
 
-        let expectedThirdNode = Node(payload: thirdPayload)
-        let expectedSecondNode = Node(payload: secondPayload, nextNode: expectedThirdNode)
-        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedThirdNode = SinglyLinkedListNode(payload: thirdPayload)
+        let expectedSecondNode = SinglyLinkedListNode(payload: secondPayload, nextNode: expectedThirdNode)
+        let expectedFirstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: expectedSecondNode)
         let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
 
         XCTAssertEqual(result,
@@ -203,21 +203,21 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
 
     func testPrefixUpTo() {
         let fourthPayload = 4
-        let fourthNode = Node(payload: fourthPayload)
+        let fourthNode = SinglyLinkedListNode(payload: fourthPayload)
         let thirdPayload = 3
-        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let thirdNode = SinglyLinkedListNode(payload: thirdPayload, nextNode: fourthNode)
         let secondPayload = 2
-        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let secondNode = SinglyLinkedListNode(payload: secondPayload, nextNode: thirdNode)
         let firstPayload = 1
-        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let firstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         let index = 2
         let prefix = list.prefix(upTo: index)
         let result = SinglyLinkedList(prefix)
 
-        let expectedSecondNode = Node(payload: secondPayload)
-        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedSecondNode = SinglyLinkedListNode(payload: secondPayload)
+        let expectedFirstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: expectedSecondNode)
         let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
 
         XCTAssertEqual(result,
@@ -227,20 +227,20 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
 
     func testPrefixWhile() {
         let fourthPayload = 4
-        let fourthNode = Node(payload: fourthPayload)
+        let fourthNode = SinglyLinkedListNode(payload: fourthPayload)
         let thirdPayload = 3
-        let thirdNode = Node(payload: thirdPayload, nextNode: fourthNode)
+        let thirdNode = SinglyLinkedListNode(payload: thirdPayload, nextNode: fourthNode)
         let secondPayload = 2
-        let secondNode = Node(payload: secondPayload, nextNode: thirdNode)
+        let secondNode = SinglyLinkedListNode(payload: secondPayload, nextNode: thirdNode)
         let firstPayload = 1
-        let firstNode = Node(payload: firstPayload, nextNode: secondNode)
+        let firstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
         
         let prefix = list.prefix { $0.payload < thirdPayload }
         let result = SinglyLinkedList(prefix)
         
-        let expectedSecondNode = Node(payload: secondPayload)
-        let expectedFirstNode = Node(payload: firstPayload, nextNode: expectedSecondNode)
+        let expectedSecondNode = SinglyLinkedListNode(payload: secondPayload)
+        let expectedFirstNode = SinglyLinkedListNode(payload: firstPayload, nextNode: expectedSecondNode)
         let expectedList = SinglyLinkedList(firstNode: expectedFirstNode)
         
         XCTAssertEqual(result,
@@ -249,10 +249,10 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
     }
 
     func testSuffixFrom() {
-        let fourthNode = Node(payload: 4)
-        let thirdNode = Node(payload: 3, nextNode: fourthNode)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let fourthNode = SinglyLinkedListNode(payload: 4)
+        let thirdNode = SinglyLinkedListNode(payload: 3, nextNode: fourthNode)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         let index = 2
@@ -285,9 +285,9 @@ final class SinglyLinkedListCollectionTests: XCTestCase {
 
         // MARK: -
 
-        let thirdNode = Node(payload: 3)
-        let secondNode = Node(payload: 2, nextNode: thirdNode)
-        let firstNode = Node(payload: 1, nextNode: secondNode)
+        let thirdNode = SinglyLinkedListNode(payload: 3)
+        let secondNode = SinglyLinkedListNode(payload: 2, nextNode: thirdNode)
+        let firstNode = SinglyLinkedListNode(payload: 1, nextNode: secondNode)
         let list = SinglyLinkedList(firstNode: firstNode)
 
         var generator = Generator()
