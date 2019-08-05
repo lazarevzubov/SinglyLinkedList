@@ -6,6 +6,8 @@
 //  Copyright © 2019 Nikita Lazarev-Zubov. All rights reserved.
 //
 
+import Foundation
+
 /**
  Type that represents one singly linked list node.
  
