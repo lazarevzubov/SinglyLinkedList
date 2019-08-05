@@ -6,8 +6,6 @@
 //  Copyright © 2019 Nikita Lazarev-Zubov. All rights reserved.
 //
 
-// TODO: Move to the list's nest.
-
 /**
  Type that represents one singly linked list node.
  
