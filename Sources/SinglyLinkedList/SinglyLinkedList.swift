@@ -24,18 +24,7 @@ public struct SinglyLinkedList<T> {
      The first node of the list.
      - warning: Setting new value explicitly not inserts the node at the beginning, but replaces the entire sequence.
      */
-    public var firstNode: SinglyLinkedListNode<T>? {
-        get {
-            return boxedFirstNode.value
-        }
-        set {
-            boxedFirstNode.value = newValue
-        }
-    }
-
-    // MARK: Private properties
-
-    private var boxedFirstNode: COWBox<SinglyLinkedListNode<T>>
+    public var firstNode: SinglyLinkedListNode<T>?
 
     // MARK: - Initialization
 
@@ -48,7 +37,7 @@ public struct SinglyLinkedList<T> {
      - parameter firstNode: The first node of the list. Nil value corresponds to an empty list.
      */
     public init(firstNode: SinglyLinkedListNode<T>? = nil) {
-        boxedFirstNode = COWBox(firstNode)
+        self.firstNode = firstNode
     }
 
     // MARK: - Methods
