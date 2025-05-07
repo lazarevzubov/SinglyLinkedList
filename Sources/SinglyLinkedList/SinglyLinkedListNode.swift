@@ -8,29 +8,25 @@
 
 import Foundation
 
-/**
- Type that represents one singly linked list node.
- 
- Provides `Equatable` and `Comparable` protocol conformity for payload types which conform to `Equatable` and `Comparable` respectively.
- It is based on payload equality and comparability respectively and doesn't take in account the next node.
- */
+/// A single singly linked list node.
+///
+/// Provides `Equatable` and `Comparable` methods for the cases when the payload type conforms to `Equatable` and `Comparable` respectively.
+///   Functionality is based on payload equality and comparability respectively and doesn't take in account the next node.
 public final class SinglyLinkedListNode<T>: NSCopying {
 
     // MARK: - Properties
 
-    /// Payload of the node.
+    /// The payload of the node.
     public var payload: T
-    /// Link to the next node in the sequence. Nil value means that this node is the last.
+    /// A link to the next node in the sequence. `nil` means that this node is last.
     public var nextNode: SinglyLinkedListNode<T>?
 
     // MARK: - Initialization
 
-    /**
-     Initializes a singly linked list node instance.
-     - Parameters:
-        - payload: The payload of the node.
-        - nextNode: The link to the next node in the sequence. Nil value (which is default) means that this node is the last.
-     */
+    /// Creates a singly linked list node.
+    /// - Parameters:
+    ///   - payload: The payload of the node.
+    ///   - nextNode: A link to the next node in the sequence. `nil` means that this node is last.
     public init(payload: T, nextNode: SinglyLinkedListNode<T>? = nil) {
         self.payload = payload
         self.nextNode = nextNode
@@ -41,7 +37,7 @@ public final class SinglyLinkedListNode<T>: NSCopying {
     // MARK: NSCopying protocol methods
 
     public func copy(with zone: NSZone? = nil) -> Any {
-        return SinglyLinkedListNode(payload: payload, nextNode: nextNode?.copy() as? SinglyLinkedListNode<T>)
+        SinglyLinkedListNode(payload: payload, nextNode: nextNode?.copy() as? SinglyLinkedListNode<T>)
     }
 
 }
@@ -55,7 +51,7 @@ extension SinglyLinkedListNode: Equatable where T: Equatable {
     // MARK: Equatable protocol methods
 
     public static func == (lhs: SinglyLinkedListNode<T>, rhs: SinglyLinkedListNode<T>) -> Bool {
-        return lhs.payload == rhs.payload
+        lhs.payload == rhs.payload
     }
 
 }
@@ -69,7 +65,7 @@ extension SinglyLinkedListNode: Comparable where T: Comparable {
     // MARK: Equatable protocol methods
 
     public static func < (lhs: SinglyLinkedListNode<T>, rhs: SinglyLinkedListNode<T>) -> Bool {
-        return lhs.payload < rhs.payload
+        lhs.payload < rhs.payload
     }
 
 }
@@ -87,10 +83,12 @@ extension SinglyLinkedListNode: CustomStringConvertible where T: CustomStringCon
     // MARK: CustomStringConvertible protocol properties
 
     public var description: String {
-        let firstPart = "The node \(Unmanaged.passUnretained(self).toOpaque()) has the payload \(payload) and"
-        if let nextNode = nextNode { return firstPart + " the next node with the payload \(nextNode.payload)." }
-
-        return firstPart + " no next node."
+        let firstPart = "The node \(Unmanaged.passUnretained(self).toOpaque()) has the payload of \(payload) and"
+        return if let nextNode {
+            firstPart + " the next node with the payload of \(nextNode.payload)."
+        } else {
+            firstPart + " no next node."
+        }
     }
 
 }
