@@ -6,101 +6,80 @@
 //  Copyright © 2019 Nikita Lazarev-Zubov. All rights reserved.
 //
 
-/**
- A data structure which represents a collection of nodes.
- 
- Every node contains a payload and a link to the next node in the list (except for the last one).
- 
- Subscript access has an O(k) complexity, where k is a number of an accessed element.
- Finding an end index has O(n) complexity where n is a nodes number.
- 
- Provides `Equatable` protocol conformity for node types which conform to `Equatable`. It is based on nodes equality and nodes order.
- */
+/// A data structure which represents a collection of nodes.
+///
+/// Every node contains a payload and a link to the next node in the list (except for the last one).
+///
+/// Subscript access has an O(k) time complexity, where k is a number of an accessed element.
+///
+/// Finding an end index has O(n) time complexity where n is the number of nodes.
+///
+/// Provides `Equatable` interface for node types which also conform to `Equatable`. It is based on nodes equality and their order.
 public struct SinglyLinkedList<T> {
 
     // MARK: - Properties
 
-    /**
-     The first node of the list.
-     - warning: Setting new value explicitly not inserts the node at the beginning, but replaces the entire sequence.
-     */
+    /// The first node of the list.
+    /// - Warning: Setting new value explicitly not inserts the node at the beginning, but replaces the entire sequence.
     public var firstNode: SinglyLinkedListNode<T>?
 
     // MARK: - Initialization
 
-    // Explicitly public initializer.
-    /**
-     Initializes a singly linked list instance.
-
-     Creates an empty list is `nil` is passed as the first node.
-
-     - parameter firstNode: The first node of the list. Nil value corresponds to an empty list.
-     */
+    /// Creates a singly linked list.
+    /// - Parameter firstNode: The first node in the list. `nil` value corresponds to an empty list.
     public init(firstNode: SinglyLinkedListNode<T>? = nil) {
         self.firstNode = firstNode
     }
 
     // MARK: - Methods
 
-    /**
-     Returns the very last node of the list or `nil` if the list is empty.
-
-     Complexity – O(n) where n is a nodes count.
-
-     - returns: The last node of the list or `nil` if the list is empty.
-     */
+    /// Returns the last node in the list or `nil` if the list is empty.
+    ///
+    /// Time complexity—O(n), where n is the number of nodes
+    ///
+    /// - Returns: The last node in the list or `nil` if the list is empty.
     public func lastNode() -> SinglyLinkedListNode<T>? {
-        guard let firstNode = firstNode else { return nil }
-
-        var lastNode = firstNode
-        var nextNode = lastNode.nextNode
-        while nextNode != nil {
-            lastNode = nextNode!
-            nextNode = lastNode.nextNode
+        var node = firstNode
+        if node != nil {
+            while node?.nextNode != nil {
+                node = node?.nextNode
+            }
         }
 
-        return lastNode
+        return node
     }
 
-    /**
-     Inserts a new node at the beginning of the list. Thus, previous first node becomes the second.
-
-     Properly handles the situation when the list is initially empty (as the result the list contains the inserted node only).
-
-     Complexity – O(1).
-
-     - parameter newNode: A new node to be inserted at the beginnging of the list.
-     */
+    /// Inserts a new node at the beginning of the list. The previous first node becomes second.
+    ///
+    /// Properly handles the situation when the list is initially empty (as a result, the list contains the inserted node only).
+    ///
+    /// Time-complexity—O(1).
+    ///
+    /// - Parameter newNode: A new node to be inserted at the beginning of the list.
     public mutating func insertAtBeginning(_ newNode: SinglyLinkedListNode<T>) {
         newNode.nextNode = firstNode
         firstNode = newNode
     }
 
-    /**
-     Inserts a new node after a specified one.
-
-     Doesn't handle the situation when the specified node is not a part of the current list. The method will add the node at the specified place anyway.
-
-     Complexity – O(1).
-
-     - Parameters:
-        - newNode: A node to be inserted.
-        - node: A node after which the new node must be inserted.
-     */
+    /// Inserts a new node after a specified one.
+    ///
+    /// Doesn't handle the situation when the specified node is not a part of the current list. The method will add the node as the next node of the specified one.
+    ///
+    /// Time-complexity—O(1).
+    ///
+    /// - Parameters:
+    ///   - newNode: The node to be inserted.
+    ///   - node: The node, after which the new node must be inserted.
     public func insert(_ newNode: SinglyLinkedListNode<T>, after node: SinglyLinkedListNode<T>) {
         newNode.nextNode = node.nextNode
         node.nextNode = newNode
     }
 
-    /**
-     Inserts a new node at the end of the list.
-
-     Properly handles the situation when the list is initially empty (as the result the list contains the inserted node only).
-
-     Complexity – O(n) where n is a nodes count, or O(1) if the list is empty.
-
-     - parameter newNode: A new node to be inserted at the end of the list.
-     */
+    /// Inserts a new node at the end of the list.
+    ///
+    /// Properly handles the situation when the list is initially empty (as a result, the list contains the inserted node only).
+    ///
+    /// Time-complexity—O(n), where n is the number of nodes, or O(1), if the list is initially empty.
     public mutating func insertAtEnd(_ newNode: SinglyLinkedListNode<T>) {
         if let lastNode = lastNode() {
             insert(newNode, after: lastNode)
@@ -109,35 +88,29 @@ public struct SinglyLinkedList<T> {
         }
     }
 
-    /**
-     Deletes the first node of the list.
-
-     Properly handles the situation when the list is initially empty or have the only node.
-
-     Complexity – O(1).
-     */
+    /// Removes the first node of the list.
+    ///
+    /// Properly handles the situation when the list is initially empty or have only one node.
+    ///
+    /// Time-complexity—O(1).
     public mutating func removeFirst() {
         firstNode = firstNode?.nextNode
     }
 
-    /**
-     Removes a node after a specified one.
-
-     Doesn't handle the situation when the specified node is not a part of the current list. The method will remove the node at the specified place anyway.
-
-     Complexity – O(1).
-     */
+    /// Removes the node after a specified one.
+    ///
+    /// Doesn't handle the situation when the specified node is not a part of the current list. The method will remove the specified node's next node anyway.
+    ///
+    /// Time-complexity – O(1).
     public func remove(after node: SinglyLinkedListNode<T>) {
         node.nextNode = node.nextNode?.nextNode
     }
 
-    /**
-     Deletes the last node of the list.
-
-     Properly handles the situation when the list is initially empty or have the only node.
-
-     Complexity – O(n) where n is the nodes number.
-     */
+    /// Removes the last node in the list.
+    ///
+    /// Properly handles the situation when the list is initially empty or have only one node.
+    ///
+    /// Time-complexity—O(n), where n is the number of nodes.
     public mutating func removeLast() {
         guard var currentNode = firstNode else { return }
         guard var nextNode = currentNode.nextNode else {
@@ -162,11 +135,12 @@ extension SinglyLinkedList: Equatable where T: Equatable {
 
     // MARK: Equatable protocol methods
 
-    public static func == (lhs: SinglyLinkedList<T>, rhs: SinglyLinkedList<T>) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         var lhsCurrentNode = lhs.firstNode
         var rhsCurrentNode = rhs.firstNode
 
-        while lhsCurrentNode != nil && rhsCurrentNode != nil {
+        while (lhsCurrentNode != nil)
+                   && (rhsCurrentNode != nil) {
             if lhsCurrentNode != rhsCurrentNode {
                 return false
             }
@@ -193,28 +167,22 @@ extension SinglyLinkedList: Sequence {
 
     // MARK: - Initialization
 
-    /**
-     Creates a new instance from the result of a `drop(while:)` call.
-     - parameter dropWhileSequence: The result of a `drop(while:)` call.
-     */
+    /// Creates a new instance from the result of a `drop(while:)` call.
+    /// - Parameter dropWhileSequence: The result of the `drop(while:)` call.
     public init(_ dropWhileSequence: DropWhileSequence<Self>) {
         var iterator = dropWhileSequence.makeIterator()
         self = SinglyLinkedList(firstNode: iterator.next())
     }
     
-    /**
-     Creates a new instance from the result of a `dropFirst(_:)` call.
-     - parameter dropFirstSequence: The result of a `dropFirst(_:)` call.
-     */
+    /// Creates a new instance from the result of a `dropFirst(_:)` call.
+    /// - parameter dropFirstSequence: The result of the `dropFirst(_:)` call.
     public init(_ dropFirstSequence: DropFirstSequence<Self>) {
         var iterator = dropFirstSequence.makeIterator()
         self = SinglyLinkedList(firstNode: iterator.next())
     }
 
-    /**
-     Creates a new instance from the result of a `prefix(_:)` call.
-     - parameter prefixSequence: The result of a `prefix(_:)` call.
-     */
+    /// Creates a new instance from the result of a `prefix(_:)` call.
+    /// - parameter prefixSequence: The result of the `prefix(_:)` call.
     public init(_ prefixSequence: PrefixSequence<Self>) {
         var iterator = prefixSequence.makeIterator()
         self = SinglyLinkedList(firstNode: iterator.next())
@@ -225,10 +193,11 @@ extension SinglyLinkedList: Sequence {
     // MARK: Sequence protocol methods
 
     public func makeIterator() -> SinglyLinkedListIterator<T> {
-        return SinglyLinkedListIterator(list: self)
+        SinglyLinkedListIterator(list: self)
     }
 
-    public __consuming func prefix(_ maxLength: Int) -> PrefixSequence<SinglyLinkedList<T>> {
+    @inlinable
+    public func prefix(_ maxLength: Int) -> PrefixSequence<Self> {
         let result = SinglyLinkedList(firstNode: firstNode?.copy() as? SinglyLinkedListNode<T>)
         for (index, node) in result.enumerated() {
             if index + 1 == maxLength {
@@ -246,9 +215,11 @@ extension SinglyLinkedList: Sequence {
 
 extension SinglyLinkedList: Collection {
     
-    // Some `Collection` requirements are covered by `Sequence` protocol conformance.
-    
+    // Some `Collection` requirements are covered with Sequence.
+
     public typealias Index = Int
+
+    // MARK: -
 
     public subscript(position: Int) -> SinglyLinkedListNode<T> {
         _read {
@@ -274,7 +245,7 @@ extension SinglyLinkedList: Collection {
     // MARK: Collection protocol properties
 
     public var startIndex: Int {
-        return 0
+        0
     }
 
     public var endIndex: Int {
@@ -292,10 +263,8 @@ extension SinglyLinkedList: Collection {
     
     // MARK: - Initialization
 
-    /**
-     Creates a new instance from a `SubSequence` instance.
-     - parameter slice: A corresponding `SubSequence` instance.
-     */
+    /// Creates a new instance from a `SubSequence` instance.
+    /// - Parameter slice: The corresponding `SubSequence` instance.
     public init(_ slice: SubSequence) {
         let startIndex = slice.startIndex
         let endIndex = slice.endIndex
@@ -314,7 +283,7 @@ extension SinglyLinkedList: Collection {
     // MARK: Collection protocol methods
 
     public func index(after i: Int) -> Int {
-        return i + 1
+        i + 1
     }
 
 }
@@ -361,9 +330,7 @@ public struct SinglyLinkedListIterator<T>: IteratorProtocol {
     // MARK: IteratorProtocol protocol methods
 
     mutating public func next() -> SinglyLinkedListNode<T>? {
-        defer {
-            list.removeFirst()
-        }
+        defer { list.removeFirst() }
         return list.firstNode
     }
 
